@@ -1,0 +1,23 @@
+Random Forest Performance:
+Train Accuracy: 1.0000
+Test Accuracy: 0.7369
+Precision: 0.7608
+Recall: 0.9366
+F1 Score: 0.8396
+AUC-ROC: 0.6678
+
+SVC Performance:
+Train Accuracy: 0.7165
+Test Accuracy: 0.7361
+Precision: 0.7366
+Recall: 0.9977
+F1 Score: 0.8475
+AUC-ROC: 0.6243
+
+Logistic Regression Performance:
+Train Accuracy: 0.7094
+Test Accuracy: 0.7361
+Precision: 0.7366
+Recall: 0.9977
+F1 Score: 0.8475
+AUC-ROC: 0.6156
