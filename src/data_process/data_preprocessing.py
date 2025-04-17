@@ -11,7 +11,8 @@ def preprocess_data(data, target_cols=['Y', 'Ya', 'Yb', 'Yc'], random_state=5117
     Preprocess data:
     1. Encode categorical columns
     2. Handle missing values
-    3. Split into train/test sets
+    3. Remove Y outliers based on historical values (Ya, Yb, Yc)
+    4. Split into train/test sets
     """
     # Encode categorical columns
     label_encoders = {}
@@ -23,6 +24,18 @@ def preprocess_data(data, target_cols=['Y', 'Ya', 'Yb', 'Yc'], random_state=5117
 
     # Handle missing values
     data = data.dropna()
+
+    # Remove Y outliers using historical data (IQR method)
+    historical_cols = ['Ya', 'Yb', 'Yc']
+    q1 = data[historical_cols].quantile(0.25, axis=1)
+    q3 = data[historical_cols].quantile(0.75, axis=1)
+    iqr = q3 - q1
+
+    lower_bound = q1 - 1.5 * iqr
+    upper_bound = q3 + 1.5 * iqr
+
+    valid_mask = (data['Y'] >= lower_bound) & (data['Y'] <= upper_bound)
+    data = data[valid_mask]
 
     # Split data
     X = data.drop(columns=target_cols)
@@ -44,5 +57,4 @@ def preprocess_data(data, target_cols=['Y', 'Ya', 'Yb', 'Yc'], random_state=5117
         'label_encoders': label_encoders,
         'scaler': scaler
     }
-
 
