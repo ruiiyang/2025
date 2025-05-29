@@ -1,10 +1,10 @@
 from data_process.data_preprocessing import load_data, preprocess_data
 from model_training import train_models
-from visualization import plot_feature_importance
+from visualisation import plot_feature_importance
 from sklearn.ensemble import RandomForestClassifier
 def main():
     # Load and preprocess data
-    data = load_data(r'data\P1data5117.csv')
+    data = load_data('../data/P1data5117.csv')
     processed_data = preprocess_data(data)
     
     feature_names = data.drop(columns=['Y', 'Ya', 'Yb', 'Yc']).columns

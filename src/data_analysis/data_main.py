@@ -3,7 +3,7 @@ from data_process import load_data,clean_data
 import matplotlib.pyplot as plt
 
 # 加载数据
-data = load_data("data/P1data5117.csv")
+data = load_data("../../data/P1data5117.csv")
 data = clean_data(data)
 
 # 执行分析
