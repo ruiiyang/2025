@@ -6,24 +6,16 @@ def load_data(file_path):
     """Load and return the dataset."""
     return pd.read_csv(file_path)
 
-def preprocess_data(data, target_cols=['Y', 'Ya', 'Yb', 'Yc'], random_state=5117):
+def preprocess_data(
+    data,
+    label_encoders,
+    target_cols=['Y','Ya','Yb','Yc'],
+    random_state=5117
+):
     """
-    Preprocess data:
-    1. Encode categorical columns
-    2. Handle missing values
-    3. Remove Y outliers based on historical values (Ya, Yb, Yc)
-    4. Split into train/test sets
-    """
-    # Encode categorical columns
-    label_encoders = {}
-    for col in data.columns:
-        if data[col].dtype == 'object':
-            le = LabelEncoder()
-            data[col] = le.fit_transform(data[col].astype(str))
-            label_encoders[col] = le
+    Preprocess data using the data from previously cleaned df. This step is to better handle Ya Yb Yc effects to Y
 
-    # Handle missing values
-    data = data.dropna()
+    """
 
     # Remove Y outliers using historical data (IQR method)
     historical_cols = ['Ya', 'Yb', 'Yc']

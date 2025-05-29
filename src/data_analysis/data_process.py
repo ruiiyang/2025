@@ -24,4 +24,4 @@ def clean_data(data):
     # Handle missing values
     data = data.dropna()
 
-    return data
+    return data, label_encoders

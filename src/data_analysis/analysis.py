@@ -4,13 +4,13 @@ from sklearn.feature_selection import mutual_info_regression
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-def analyze_relationships(
+def  analyze_relationships(
     data: pd.DataFrame,
     target: str = 'Y',
     features: list[str] = ['Ya', 'Yb', 'Yc']
 ) -> tuple[pd.DataFrame, pd.DataFrame]:
     """
-    Correlation and mutual info calculation and build visualisation 执行相关性 + 互信息分析并生成可视化。
+    Correlation and mutual info calculation and build visualisation
 
     Returns:
         corr_df: DataFrame，includes Pearson and Spearman coefficients
