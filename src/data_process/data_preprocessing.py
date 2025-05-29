@@ -14,7 +14,8 @@ def preprocess_data(
     random_state=5117
 ):
     """
-    Preprocess data using the data from previously cleaned df. This step is to better handle Ya Yb Yc effects to Y
+    Preprocess data using the data from previously cleaned df.
+    This step is to better handle Ya Yb Yc effects to Y
 
     """
 
