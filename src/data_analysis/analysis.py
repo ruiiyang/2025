@@ -4,7 +4,7 @@ from sklearn.feature_selection import mutual_info_regression
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-def  analyze_relationships(
+def analyze_relationships(
     data: pd.DataFrame,
     target: str = 'Y',
     features: list[str] = ['Ya', 'Yb', 'Yc']
@@ -16,6 +16,7 @@ def  analyze_relationships(
         corr_df: DataFrame，includes Pearson and Spearman coefficients
         mi_df:   DataFrame，includes mutual information
     """
+
     # calculate correlation
     corr_results = []
     for col in features:
@@ -32,13 +33,9 @@ def  analyze_relationships(
     mi = mutual_info_regression(data[features], data[target])
     mi_df = pd.DataFrame({'Feature': features, 'Mutual_Info': mi})
 
-    #vis
+    #visualisation
 
-    #scatter plot
-    g = sns.pairplot(data, x_vars=features, y_vars=target, kind='reg', height=3, aspect=1)
-    g.fig.suptitle("Scatter Plot Matrix", y=1.02)
-    plt.tight_layout()
-    plt.show()
+
     #heat map
     n = data.shape[1]
     size = max(8, n)
