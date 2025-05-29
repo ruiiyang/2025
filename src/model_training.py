@@ -115,7 +115,7 @@ def train_models(X_train, X_test, y_train, y_test, feature_names=None, random_st
         metrics['Best Params'] = grid_search.best_params_
     
         results[name] = metrics
-        #print(f"{name} 最佳参数: {grid_search.best_params_}")
+        print(f"{name} Best parameters: {grid_search.best_params_}")
 
     return results
 
