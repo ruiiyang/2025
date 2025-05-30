@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import numpy as np
 from sklearn.model_selection import GridSearchCV
 from sklearn.inspection import permutation_importance
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score, confusion_matrix
@@ -30,9 +31,20 @@ def evaluate_model(model, X_train, X_test, y_train, y_test, feature_names=None):
         'Confusion Matrix': confusion_matrix(y_test, y_pred)
     }
 
-    if hasattr(model, 'feature_importances_') and feature_names is not None:
-        plt = plot_feature_importance(feature_names, model.feature_importances_, f"{type(model).__name__} Feature Importance")
-        plt.show()
+    if feature_names is not None:
+        if hasattr(model, 'feature_importances_'):
+            #random forest
+            values = model.feature_importances_
+            title = f"{type(model).__name__} Feature Importance"
+            plt = plot_feature_importance(feature_names, values, title)
+            plt.show()
+        elif hasattr(model, 'coef_'):
+            # logistic regression
+            values = np.abs(model.coef_[0])
+            title = f"{type(model).__name__} Feature Coefficients (Absolute)"
+            plt = plot_feature_importance(feature_names, values, title)
+            plt.show()
+
     return metrics
 
 def train_models(X_train, X_test, y_train, y_test, feature_names=None, random_state=5117):

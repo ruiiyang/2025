@@ -34,8 +34,6 @@ def analyze_relationships(
     mi_df = pd.DataFrame({'Feature': features, 'Mutual_Info': mi})
 
     #visualisation
-
-
     #heat map
     n = data.shape[1]
     size = max(8, n)

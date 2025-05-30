@@ -1,11 +1,6 @@
-import pandas as pd
-import numpy  as np
-from sklearn.preprocessing import LabelEncoder, StandardScaler
+from sklearn.preprocessing import StandardScaler, RobustScaler
 from sklearn.model_selection import train_test_split
 
-def load_data(file_path):
-    """Load and return the dataset."""
-    return pd.read_csv(file_path)
 
 def preprocess_data(
     data,
@@ -39,7 +34,10 @@ def preprocess_data(
     )
 
     # Scale features
-    scaler = StandardScaler()
+    # scaler = StandardScaler()
+    # X_train_scaled = scaler.fit_transform(X_train)
+    # X_test_scaled = scaler.transform(X_test)
+    scaler = RobustScaler()
     X_train_scaled = scaler.fit_transform(X_train)
     X_test_scaled = scaler.transform(X_test)
 
